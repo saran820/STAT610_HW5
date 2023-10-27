@@ -15,7 +15,7 @@ compute_f_hat = function(z, x, y, omega) {
   X = make_predictor_matrix(x)
   
   # changed line
-  scaled_X = t(apply(X, 1, function(row) row * Wz))
+  scaled_X = X * Wz
   scaled_y = Wz * y
   f_hat = c(1, z) %*% solve(t(X) %*% scaled_X) %*% t(X) %*% scaled_y
   
