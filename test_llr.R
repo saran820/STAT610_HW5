@@ -1,22 +1,23 @@
 context("Check local linear regression function")
 source("llr_functions.R")
 
-## n = 15
+n = 15
 ## a very simple regression model
-## x = rnorm(n)
-## y = rnorm(x + rnorm(n))
-## z = seq(-1, 1, length.out = 100)
-## test other data
-library(reshape2)
+x = rnorm(n)
+y = rnorm(x + rnorm(n))
+z = seq(-1, 1, length.out = 100)
 
-data(french_fries)
-french_fries = french_fries[complete.cases(french_fries),]
-x = french_fries$potato
-y = french_fries$buttery
-z = seq(0, 15, length.out = 100)
-n <- length(x)
-fits = llr(z = z, x = x, y = y, omega = 2)
-plot(z, fits)
+## test other data
+## library(reshape2)
+
+## data(french_fries)
+## french_fries = french_fries[complete.cases(french_fries),]
+## x = french_fries$potato
+## y = french_fries$buttery
+## z = seq(0, 15, length.out = 100)
+## n <- length(x)
+## fits = llr(z = z, x = x, y = y, omega = 2)
+## plot(z, fits)
 
 
 test_that("llr output has correct length", {
