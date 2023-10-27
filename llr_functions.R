@@ -1,3 +1,5 @@
+## new comment added after the file added was already filled.
+
 ## Top-level function
 llr <- function(x, y, z, omega) {
   fits = sapply(z, compute_f_hat, x=x, y=y, omega=omega)
