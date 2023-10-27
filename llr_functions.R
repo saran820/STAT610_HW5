@@ -8,9 +8,17 @@ llr <- function(x, y, z, omega) {
 
 ## Second-level function
 compute_f_hat = function(z, x, y, omega) {
+  
+  #changed line
   Wz = make_weight_matrix(z, x, omega)
+
   X = make_predictor_matrix(x)
-  f_hat = c(1, z) %*% solve(t(X) %*% Wz %*% X) %*% t(X) %*% Wz %*% y
+  
+  # changed line
+  scaled_X = apply(X, 2, function(col) col * Wz)
+  scaled_y = Wz * y
+  f_hat = c(1, z) %*% solve(t(X) %*% scaled_X) %*% t(X) %*% scaled_ys
+  
   return(f_hat)
 }
 
