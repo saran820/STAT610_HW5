@@ -10,14 +10,14 @@ llr <- function(x, y, z, omega) {
 compute_f_hat = function(z, x, y, omega) {
   
   #changed line
-  Wz = make_weight_matrix(z, x, omega)
+  Wz = diag(make_weight_matrix(z, x, omega))
 
   X = make_predictor_matrix(x)
   
   # changed line
-  WX = t(apply(X, 1, function(row) row * Wz))
+  scaled_X = t(apply(X, 1, function(row) row * Wz))
   scaled_y = Wz * y
-  f_hat = c(1, z) %*% solve(t(X) %*% WX) %*% t(X) %*% Wy
+  f_hat = c(1, z) %*% solve(t(X) %*% scaled_X) %*% t(X) %*% scaled_y
   
   return(f_hat)
 }
